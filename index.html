@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLUSTRAP PURE - Mobile Car Wash Service</title>
+    
+    <!-- Google Fonts: Inter (Close to Apple's San Francisco) & Sarabun for Thai -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Config for Apple Style (Blue Theme) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Sarabun', 'sans-serif'],
+                    },
+                    colors: {
+                        // Premium Blue Palette
+                        'apple-black': '#0f172a', /* Midnight Navy instead of pure black */
+                        'apple-gray': '#64748b',   /* Blue-ish Gray */
+                        'apple-light-gray': '#f0f9ff', /* Ice Blue Background */
+                        'apple-blue': '#0ea5e9',   /* Sky Blue Accent */
+                        'apple-dark-blue': '#0c4a6e',
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                        'fade-in': 'fadeIn 1.5s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', 'Sarabun', sans-serif;
+            background-color: #ffffff;
+            color: #0f172a; /* Main text color updated */
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Glassmorphism with slight blue tint */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(14, 165, 233, 0.1);
+        }
+
+        /* Reveal Animation Utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0c4a6e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .bg-mesh {
+            background-color: #ffffff;
+            background-image: radial-gradient(at 0% 0%, hsla(203, 89%, 96%, 1) 0px, transparent 50%),
+                              radial-gradient(at 100% 100%, hsla(204, 88%, 94%, 1) 0px, transparent 50%);
+        }
+    </style>
+</head>
+<body class="bg-mesh">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-5xl mx-auto px-6 h-12 flex justify-between items-center">
+            <a href="#" class="text-xl font-semibold tracking-tight text-apple-black flex items-center gap-2">
+                <i class="fa-solid fa-droplet text-apple-blue"></i> PLUSTRAP PURE
+            </a>
+            <div class="flex gap-6 items-center">
+                <a href="#features" class="hidden md:block text-xs text-apple-gray hover:text-apple-blue transition-colors">คุณสมบัติ</a>
+                <a href="#package" class="hidden md:block text-xs text-apple-gray hover:text-apple-blue transition-colors">แพ็คเกจ</a>
+                <a href="#contact" class="bg-apple-blue text-white text-xs px-4 py-1.5 rounded-full hover:bg-sky-600 transition-transform transform hover:scale-105 shadow-md shadow-sky-200">จองคิว</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col justify-center items-center pt-20 pb-10 text-center px-4 relative overflow-hidden">
+        <!-- Ambient Background Blobs -->
+        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-float"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-sky-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-float" style="animation-delay: 2s;"></div>
+
+        <div class="z-10 max-w-4xl relative">
+            <p class="text-apple-blue font-semibold mb-4 text-sm md:text-base animate-fade-in-up uppercase tracking-widest" style="animation-delay: 0.1s;">Premium Mobile Car Wash</p>
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-6 leading-tight animate-fade-in-up text-apple-black" style="animation-delay: 0.3s;">
+                ความสะอาดที่เหนือกว่า.<br>
+                <span class="text-gradient">ส่งตรงถึงหน้าบ้านคุณ.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-apple-gray max-w-2xl mx-auto mb-10 font-light animate-fade-in-up" style="animation-delay: 0.5s;">
+                บริการโดย PLUSTRAP PURE ทีมงานมืออาชีพพร้อมอุปกรณ์มาตรฐานศูนย์บริการ ดูแลรถคุณอย่างอ่อนโยน
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.7s;">
+                <a href="#package" class="bg-apple-black text-white text-base px-8 py-3 rounded-full hover:bg-slate-800 transition-all shadow-lg hover:shadow-slate-500/30">
+                    ดูราคาแพ็คเกจ
+                </a>
+                <a href="#process" class="text-apple-black text-base px-8 py-3 hover:text-apple-blue transition-colors flex items-center justify-center gap-2 group">
+                    วิธีการทำงาน <i class="fa-solid fa-chevron-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Abstract Car Background/Graphic -->
+        <div class="mt-16 w-full max-w-5xl mx-auto animate-fade-in relative z-10" style="animation-delay: 1s;">
+            <div class="aspect-video bg-gradient-to-b from-white to-apple-light-gray rounded-3xl flex items-center justify-center relative overflow-hidden shadow-2xl border border-sky-100">
+               <!-- Placeholder for Car Image -->
+               <div class="text-center">
+                   <i class="fa-solid fa-car-side text-9xl text-slate-200"></i>
+                   <div class="mt-4 text-slate-300 font-light tracking-widest">PLUSTRAP PURE</div>
+               </div>
+               <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-50"></div>
+            </div>
+            <p class="text-xs text-apple-gray mt-4 text-center">*ภาพจำลองเพื่อการโฆษณา ให้บริการจริงด้วยทีมงานมืออาชีพ</p>
+        </div>
+    </section>
+
+    <!-- Features Section (Grid) -->
+    <section id="features" class="py-24 bg-apple-light-gray">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-apple-black">ไม่ใช่แค่ล้าง. แต่คือการดูแล.</h2>
+                <p class="text-apple-gray text-lg">ใส่ใจทุกรายละเอียด ด้วยอุปกรณ์เกรดพรีเมียม</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl hover:shadow-sky-100 transition-all duration-300 reveal border border-transparent hover:border-sky-100">
+                    <div class="w-12 h-12 bg-sky-50 text-apple-blue rounded-2xl flex items-center justify-center mb-6 text-xl">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-apple-black">High Pressure</h3>
+                    <p class="text-apple-gray font-light">เครื่องฉีดน้ำแรงดันสูงพกพา ขจัดคราบฝังลึกอย่างมีประสิทธิภาพและปลอดภัยต่อสีรถ</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl hover:shadow-sky-100 transition-all duration-300 reveal border border-transparent hover:border-sky-100">
+                    <div class="w-12 h-12 bg-sky-50 text-apple-blue rounded-2xl flex items-center justify-center mb-6 text-xl">
+                        <i class="fa-solid fa-spray-can-sparkles"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-apple-black">Premium Foam</h3>
+                    <p class="text-apple-gray font-light">โฟมหนานุ่มสูตร pH Balance ถนอมสีรถ ให้ความเงางามฉ่ำลึก</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl hover:shadow-sky-100 transition-all duration-300 reveal border border-transparent hover:border-sky-100">
+                    <div class="w-12 h-12 bg-sky-50 text-apple-blue rounded-2xl flex items-center justify-center mb-6 text-xl">
+                        <i class="fa-solid fa-wind"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-apple-black">Interior Detailing</h3>
+                    <p class="text-apple-gray font-light">ดูแลภายในครบวงจร ดูดฝุ่น เช็ดคอนโซล ลงน้ำยาเคลือบ เพื่อสุขอนามัยที่ดี</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The ONE Package (Highlight) -->
+    <section id="package" class="py-24 bg-apple-black text-white relative overflow-hidden">
+        <!-- Changed background to deep navy/slate via config -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none">
+            <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-sky-600 rounded-full mix-blend-screen filter blur-[150px] opacity-40"></div>
+            <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-800 rounded-full mix-blend-screen filter blur-[150px] opacity-40"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+            <h2 class="text-4xl md:text-6xl font-bold tracking-tight mb-4 reveal text-white">เรียบง่าย. ราคาเดียว.</h2>
+            <p class="text-slate-400 text-xl mb-12 reveal">คุ้มค่าที่สุด จบทุกขั้นตอนไม่ต้องจ่ายเพิ่ม</p>
+
+            <!-- Pricing Card -->
+            <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-700 rounded-[40px] p-8 md:p-14 max-w-lg mx-auto shadow-2xl reveal hover:scale-[1.02] transition-transform duration-500 relative overflow-hidden group">
+                <!-- Glowing border effect -->
+                <div class="absolute inset-0 border-2 border-transparent group-hover:border-sky-500/30 rounded-[40px] transition-colors pointer-events-none"></div>
+                
+                <span class="text-sky-400 font-bold tracking-wider text-sm uppercase mb-4 block">The Signature Wash</span>
+                <h3 class="text-5xl md:text-7xl font-bold mb-2 text-white">฿599</h3>
+                <p class="text-slate-400 text-sm mb-8">สุทธิ / คัน (รวมทุกค่าบริการแล้ว)</p>
+                
+                <hr class="border-slate-700 mb-8">
+
+                <ul class="text-left space-y-4 mb-10 text-slate-300">
+                    <li class="flex items-start gap-3">
+                        <div class="w-6 h-6 rounded-full bg-sky-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fa-solid fa-check text-sky-400 text-xs"></i>
+                        </div>
+                        <span>ล้างสีด้วยโฟมสูตรพรีเมียม</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div class="w-6 h-6 rounded-full bg-sky-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fa-solid fa-check text-sky-400 text-xs"></i>
+                        </div>
+                        <span>ฉีดน้ำแรงดันสูงทำความสะอาดซุ้มล้อ</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div class="w-6 h-6 rounded-full bg-sky-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fa-solid fa-check text-sky-400 text-xs"></i>
+                        </div>
+                        <span>เช็ดแห้งด้วยผ้าไมโครไฟเบอร์ ไม่เกิดรอยขนแมว</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div class="w-6 h-6 rounded-full bg-sky-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fa-solid fa-check text-sky-400 text-xs"></i>
+                        </div>
+                        <span>ดูดฝุ่นภายในห้องโดยสารและพรม</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div class="w-6 h-6 rounded-full bg-sky-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fa-solid fa-check text-sky-400 text-xs"></i>
+                        </div>
+                        <span>เช็ดทำความสะอาดคอนโซลและแผงประตู</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div class="w-6 h-6 rounded-full bg-sky-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fa-solid fa-check text-sky-400 text-xs"></i>
+                        </div>
+                        <span>เคลือบเงายางดำ (Tire Dressing)</span>
+                    </li>
+                </ul>
+
+                <a href="#contact" class="block w-full bg-white text-apple-black font-semibold py-4 rounded-full hover:bg-sky-50 transition-colors">
+                    จองบริการเลย
+                </a>
+                <p class="text-xs text-slate-500 mt-4">*ระยะเวลาให้บริการประมาณ 45-60 นาทีต่อคัน</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process / How it works -->
+    <section id="process" class="py-24 max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-12 text-center reveal text-apple-black">ขั้นตอนการใช้บริการ</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="text-center reveal delay-100">
+                <div class="w-16 h-16 bg-apple-light-gray text-apple-blue rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold border border-sky-100">1</div>
+                <h4 class="font-bold mb-2 text-apple-black">จองคิว</h4>
+                <p class="text-sm text-apple-gray">ทักแชทหรือโทรจอง ระบุเวลาและสถานที่</p>
+            </div>
+            <div class="text-center reveal delay-200">
+                <div class="w-16 h-16 bg-apple-light-gray text-apple-blue rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold border border-sky-100">2</div>
+                <h4 class="font-bold mb-2 text-apple-black">ทีมงานเดินทาง</h4>
+                <p class="text-sm text-apple-gray">ไปถึงหน้าบ้านตามเวลานัดหมาย</p>
+            </div>
+            <div class="text-center reveal delay-300">
+                <div class="w-16 h-16 bg-apple-light-gray text-apple-blue rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold border border-sky-100">3</div>
+                <h4 class="font-bold mb-2 text-apple-black">บริการ One Stop</h4>
+                <p class="text-sm text-apple-gray">ล้าง ดูดฝุ่น เคลือบยาง จบในที่เดียว</p>
+            </div>
+            <div class="text-center reveal delay-400">
+                <div class="w-16 h-16 bg-apple-light-gray text-apple-blue rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold border border-sky-100">4</div>
+                <h4 class="font-bold mb-2 text-apple-black">ตรวจสอบงาน</h4>
+                <p class="text-sm text-apple-gray">เช็ครถและชำระเงิน (โอน/เงินสด)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Footer -->
+    <footer id="contact" class="bg-apple-light-gray py-20 border-t border-sky-100">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6 reveal text-apple-black">พร้อมให้รถคุณเงางามหรือยัง?</h2>
+            <p class="text-apple-gray mb-8 reveal">จองคิวล่วงหน้าวันนี้ เพื่อความสะดวกและรวดเร็ว</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12 reveal">
+                <button onclick="document.getElementById('booking-modal').classList.remove('hidden')" class="bg-[#06c755] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-[#05b54d] transition-colors flex items-center justify-center gap-2 shadow-lg hover:shadow-green-500/30 w-full sm:w-auto">
+                    <i class="fa-brands fa-line text-2xl"></i> จองผ่าน LINE
+                </button>
+                <a href="tel:0616636558" class="bg-white text-apple-black border border-gray-200 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 w-full sm:w-auto shadow-sm">
+                    <i class="fa-solid fa-phone text-apple-blue"></i> 061-663-6558
+                </a>
+            </div>
+
+            <div class="text-xs text-apple-gray border-t border-gray-200 pt-8">
+                <p class="mb-2">พื้นที่ให้บริการ: กรุงเทพฯ และปริมณฑล (โปรดสอบถามพื้นที่อีกครั้ง)</p>
+                <p>&copy; 2023 PLUSTRAP PURE Mobile Car Wash. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mock Modal (Clicking Line Button) -->
+    <div id="booking-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl animate-fade-in-up">
+            <h3 class="text-2xl font-bold mb-2 text-apple-black">Add Line Friend</h3>
+            <p class="text-apple-gray mb-6">แสกน QR หรือกดปุ่มเพื่อแอดไลน์จองคิว</p>
+            
+            <div class="w-48 h-48 bg-gray-100 mx-auto rounded-xl mb-6 flex items-center justify-center text-gray-400 border border-gray-200">
+                [QR Code]
+            </div>
+            
+            <button onclick="document.getElementById('booking-modal').classList.add('hidden')" class="text-apple-blue font-semibold hover:underline">
+                ปิดหน้าต่าง
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript for Animations -->
+    <script>
+        // Intersection Observer for Scroll Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar blur effect refinement on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-sm');
+            } else {
+                navbar.classList.remove('shadow-sm');
+            }
+        });
+    </script>
+</body>
+</html>
